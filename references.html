@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en" data-bs-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>References &middot; Vitrine</title>
+  <meta name="description" content="Third-party code, libraries, assets and techniques used in the Vitrine project.">
+  <link rel="stylesheet" href="js/lib/bootstrap/bootstrap.min.css">
+  <link rel="stylesheet" href="css/theme.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/components.css">
+</head>
+<body>
+  <header>
+    <nav class="navbar navbar-expand-lg site-nav" aria-label="Main navigation">
+      <div class="container-fluid">
+        <a class="navbar-brand brand" href="index.html">
+          <span class="brand-logo" aria-hidden="true">V</span>
+          <span class="brand-name">Vitrine</span>
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#site-menu" aria-controls="site-menu"
+                aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="site-menu">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+            <li class="nav-item"><a class="nav-link" href="app.html">App</a></li>
+            <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+            <li class="nav-item"><a class="nav-link active" aria-current="page" href="references.html">References</a></li>
+            <li class="nav-item"><a class="nav-link" href="originality.html">Originality</a></li>
+            <li class="nav-item"><a class="nav-link" href="sitemap.html">Site map</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main class="page page-doc">
+    <div class="container-fluid">
+      <h1>References</h1>
+      <p class="lead">The third-party code, libraries, assets and techniques
+        this project depends on. Anything adapted is also cited in a comment
+        where it is used.</p>
+
+      <section>
+        <h2>Libraries</h2>
+        <ul class="ref-list">
+          <li>Three.js r170. A WebGL 3D library, MIT licence.
+            <a href="https://threejs.org/">threejs.org</a>. Vendored under
+            <code>js/lib/three/</code>.</li>
+          <li>Bootstrap 5.3.3. A CSS and component framework, MIT licence.
+            <a href="https://getbootstrap.com/">getbootstrap.com</a>. Vendored
+            under <code>js/lib/bootstrap/</code>.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Three.js add-on modules</h2>
+        <p>These ship with Three.js under <code>examples/jsm</code>, MIT licence,
+          and are vendored under <code>js/lib/three/addons/</code>:</p>
+        <ul class="ref-list">
+          <li><code>OrbitControls</code> for the orbit camera.</li>
+          <li><code>GLTFLoader</code> and <code>BufferGeometryUtils</code> for
+            loading the <code>.glb</code> models.</li>
+          <li><code>RoomEnvironment</code> for image-based lighting.</li>
+          <li><code>EffectComposer</code> with <code>RenderPass</code>,
+            <code>UnrealBloomPass</code>, <code>OutputPass</code>,
+            <code>ShaderPass</code> and supporting modules for the
+            post-processing pipeline.</li>
+          <li><code>FXAAShader</code> for post-processing anti-aliasing.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Assets</h2>
+        <ul class="ref-list">
+          <li>Globe surface-swap textures: <code>earth_atmos_2048.jpg</code> and
+            <code>moon_1024.jpg</code> from the Three.js example textures
+            (<code>examples/textures/planets/</code>), which derive from NASA
+            imagery. Used for the Earth and Moon options in the texture swap.</li>
+          <li>Model textures: the can, bottle and globe each carry an image
+            texture authored into the Blender source. The globe surface is a
+            simplified Köppen climate classification map as published on
+            Wikimedia Commons. The specific sources and licences of the model
+            artwork are confirmed by the author in the submission.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Techniques</h2>
+        <ul class="ref-list">
+          <li>The atmosphere glow uses the fresnel rim technique that is common
+            to Three.js planet and atmosphere examples. The GLSL in
+            <code>js/shaders/AtmosphereShader.js</code> was written for this
+            project.</li>
+          <li>The post-processing pipeline follows the structure of the Three.js
+            <code>EffectComposer</code> examples. The vignette pass in
+            <code>js/postprocessing/PostFX.js</code> uses GLSL written for this
+            project.</li>
+        </ul>
+      </section>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container-fluid">
+      <nav aria-label="Footer navigation">
+        <ul class="footer-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="app.html">App</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="references.html">References</a></li>
+          <li><a href="originality.html">Originality</a></li>
+          <li><a href="sitemap.html">Site map</a></li>
+          <li><a href="submission.html">Submission</a></li>
+        </ul>
+      </nav>
+      <p class="footer-note">Vitrine, built for the Web 3D Apps coursework.</p>
+    </div>
+  </footer>
+
+  <script src="js/lib/bootstrap/bootstrap.bundle.min.js"></script>
+</body>
+</html>

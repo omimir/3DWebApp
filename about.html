@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="en" data-bs-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>About &middot; Vitrine</title>
+  <meta name="description" content="How the Vitrine models and app were built: the modelling, the design decisions, the MVC code and the accessibility work.">
+  <link rel="stylesheet" href="js/lib/bootstrap/bootstrap.min.css">
+  <link rel="stylesheet" href="css/theme.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/components.css">
+</head>
+<body>
+  <header>
+    <nav class="navbar navbar-expand-lg site-nav" aria-label="Main navigation">
+      <div class="container-fluid">
+        <a class="navbar-brand brand" href="index.html">
+          <span class="brand-logo" aria-hidden="true">V</span>
+          <span class="brand-name">Vitrine</span>
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#site-menu" aria-controls="site-menu"
+                aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="site-menu">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+            <li class="nav-item"><a class="nav-link" href="app.html">App</a></li>
+            <li class="nav-item"><a class="nav-link active" aria-current="page" href="about.html">About</a></li>
+            <li class="nav-item"><a class="nav-link" href="references.html">References</a></li>
+            <li class="nav-item"><a class="nav-link" href="originality.html">Originality</a></li>
+            <li class="nav-item"><a class="nav-link" href="sitemap.html">Site map</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main class="page page-doc">
+    <div class="container-fluid">
+      <h1>About this project</h1>
+      <p class="lead">Vitrine is a small 3D web app that shows three models I
+        built in Blender: a drinks can, a water bottle and a desk globe. This
+        page covers how the models were made, why the app is put together the
+        way it is, how the code is organised, and what I did for accessibility.</p>
+
+      <section>
+        <h2>The 3D models</h2>
+        <p>The can and bottle are each a little over sixteen thousand vertices,
+          with their curves carried by smooth shading rather than extra
+          polygons. The globe's sphere is the densest mesh of the three, since
+          a round surface needs the geometry to stay round close up.</p>
+        <p>The materials are physically based, set up with Blender's Principled
+          shader and exported as glTF metallic-roughness. Each model has an
+          image texture for its artwork: printed labels on the can and bottle,
+          a world map on the globe. The viewer relights everything with an
+          image-based environment and a studio light rig, so the metal can, the
+          clear plastic bottle and the matte globe all catch the light in their
+          own way.</p>
+        <p>The app ignores the lights and cameras that come inside the glTF
+          file. They are stripped out as the model loads, and the app adds its
+          own light rig and its own perspective and orthographic cameras. That
+          way it keeps full control of how each model is lit and framed, and
+          both can be changed from the controls.</p>
+      </section>
+
+      <section>
+        <h2>Design choices</h2>
+        <p>The interface uses a dark palette so the lit models are the
+          brightest thing on the screen. The layout is a fluid Bootstrap grid.
+          On a wide screen the gallery, the viewer and the controls sit side by
+          side; on a narrow screen they stack into one column so the viewer
+          stays a usable size on a phone.</p>
+        <p>The controls sit in the right-hand panel: wireframe, a spotlight, the
+          globe's surface texture, and the post-processing toggle. Each model
+          also has an animation of its own behind the Animate button. The can's
+          tab pops open, the bottle's cap unscrews and lifts away, and the globe
+          spins on its stand and slowly coasts to a stop. A separate Explode
+          button pulls each model apart into its pieces.</p>
+        <p>Rendering happens on demand. The scene is only redrawn when something
+          actually changes, like the camera moving or an animation running, so
+          the page sits quiet while you are just reading. That keeps it light on
+          the processor and the battery.</p>
+        <p>The three models are also provided in X3D, a declarative 3D format.
+          Those were converted from the glTF exports and live in a separate
+          repository. I picked those three specifically because I've always loved 
+          globe displays, having wanted to be an astronomer as a kid. As for
+          the water bottle, I just found Evian's mountain design to be cool, and 
+          the can was to one-up the one shown in the labs. I hope I did that justice.</p>
+      </section>
+
+      <section>
+        <h2>Architecture: model, view, controller</h2>
+        <p>The code under <code>js/</code> is split into model, view and
+          controller, written as plain JavaScript ES modules with no build
+          step.</p>
+        <p>The model holds the state. <code>AppState</code> tracks what the app
+          is currently showing: the active model, wireframe, lighting, camera
+          mode, animation and effects. <code>ModelCatalog</code> holds the list
+          of models, fetched at runtime from <code>data/models.json</code> with
+          the fetch API, which is where the project uses AJAX and JSON. Any time
+          the state changes, it announces the change on a small
+          publish-and-subscribe <code>EventBus</code>.</p>
+        <p>The views listen to that bus and never change state themselves.
+          <code>SceneView</code> owns the Three.js renderer, scene, cameras and
+          render loop. <code>GalleryView</code>, <code>ControlPanelView</code>,
+          <code>InfoPanelView</code> and <code>TextureSwapView</code> draw the
+          rest of the interface from the same model data and redraw when the bus
+          tells them to.</p>
+        <p>The controllers turn input into state changes.
+          <code>UIController</code> handles clicks on the gallery and the
+          controls, <code>RaycastController</code> handles clicks on the 3D
+          model itself, <code>KeyboardController</code> handles arrow-key
+          navigation, and <code>AppController</code> connects state changes
+          through to the scene. Input only flows one way: a controller changes
+          the model, the model announces it, the views react.</p>
+        <p>So the stack is HTML5, CSS3 and JavaScript, with Three.js doing the
+          3D and Bootstrap doing the responsive layout, and the content loaded
+          as JSON over fetch.</p>
+      </section>
+
+      <section>
+        <h2>Deeper understanding: shaders and post-processing</h2>
+        <p>The globe has a thin extra shell around it running a custom GLSL
+          <code>ShaderMaterial</code>. Its fragment shader works out a fresnel
+          term: bright where the surface turns away from the camera, fading
+          where it faces you. That falloff reads as a faint atmosphere at the
+          globe's edge.</p>
+        <p>The viewer also has an optional post-processing chain built with the
+          Three.js <code>EffectComposer</code>: the scene render, a bloom pass
+          on the bright highlights, tone mapping, a second piece of custom GLSL
+          for a vignette that darkens the frame edges like a studio photo, and
+          an anti-aliasing pass. The bloom is eased back if your system asks for
+          reduced motion.</p>
+      </section>
+
+      <section>
+        <h2>Accessibility</h2>
+        <p>The pages use semantic HTML5 landmarks (<code>header</code>,
+          <code>nav</code>, <code>main</code>, <code>footer</code>), and every
+          control is a real <code>button</code>, so you can reach the whole app
+          with the Tab key. The model gallery also responds to the arrow keys,
+          and focus follows whatever is selected.</p>
+        <p>Toggle buttons report their state with <code>aria-pressed</code>. The
+          model description sits in an <code>aria-live</code> region, so a
+          screen reader announces it when it changes. The controls keep plain
+          text labels and a visible focus outline.</p>
+        <p>Text stays well above the WCAG AA contrast ratio against the dark
+          background. If your system asks for reduced motion, the exploded view
+          and the model animations skip their tweens and settle straight to the
+          end state, and the bloom is eased back. The WebGL canvas has a text
+          fallback for browsers that cannot show it.</p>
+      </section>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container-fluid">
+      <nav aria-label="Footer navigation">
+        <ul class="footer-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="app.html">App</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="references.html">References</a></li>
+          <li><a href="originality.html">Originality</a></li>
+          <li><a href="sitemap.html">Site map</a></li>
+          <li><a href="submission.html">Submission</a></li>
+        </ul>
+      </nav>
+      <p class="footer-note">Vitrine, built for the Web 3D Apps coursework.</p>
+    </div>
+  </footer>
+
+  <script src="js/lib/bootstrap/bootstrap.bundle.min.js"></script>
+</body>
+</html>

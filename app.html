@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="en" data-bs-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>App &middot; Vitrine</title>
+  <meta name="description" content="Interactive 3D viewer for the Vitrine models: a drink can, a water bottle and a globe.">
+  <link rel="stylesheet" href="js/lib/bootstrap/bootstrap.min.css">
+  <link rel="stylesheet" href="css/theme.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/components.css">
+</head>
+<body>
+  <header>
+    <nav class="navbar navbar-expand-lg site-nav" aria-label="Main navigation">
+      <div class="container-fluid">
+        <a class="navbar-brand brand" href="index.html">
+          <span class="brand-logo" aria-hidden="true">V</span>
+          <span class="brand-name">Vitrine</span>
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#site-menu" aria-controls="site-menu"
+                aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="site-menu">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+            <li class="nav-item"><a class="nav-link active" aria-current="page" href="app.html">App</a></li>
+            <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+            <li class="nav-item"><a class="nav-link" href="references.html">References</a></li>
+            <li class="nav-item"><a class="nav-link" href="originality.html">Originality</a></li>
+            <li class="nav-item"><a class="nav-link" href="sitemap.html">Site map</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main class="page app-main">
+    <h1 class="visually-hidden">Vitrine 3D model viewer</h1>
+    <div class="container-fluid">
+      <div class="row g-3">
+        <aside class="col-12 col-lg-2" aria-label="Model gallery">
+          <div class="panel">
+            <h2 class="panel-title">Models</h2>
+            <ul class="gallery-list" id="model-gallery"></ul>
+            <div class="gallery-import">
+              <button class="btn btn-vitrine" type="button" id="import-button">Import model</button>
+              <input type="file" id="import-input" accept=".glb" hidden>
+            </div>
+          </div>
+        </aside>
+
+        <section class="col-12 col-lg-7" aria-label="3D viewer">
+          <div id="canvas-wrap" class="canvas-wrap">
+            <canvas id="scene-canvas" aria-label="3D model viewer">
+              Your browser does not support the WebGL 3D viewer.
+            </canvas>
+          </div>
+        </section>
+
+        <aside class="col-12 col-lg-3" aria-label="Controls">
+          <div class="panel">
+            <h2 class="panel-title">Controls</h2>
+
+            <div class="control-block">
+              <h3 class="control-label">Display</h3>
+              <div class="control-group">
+                <button class="btn btn-vitrine" type="button" data-action="toggle-wireframe" aria-pressed="false">Wireframe</button>
+              </div>
+            </div>
+
+            <div class="control-block">
+              <h3 class="control-label">Lighting</h3>
+              <div class="control-group">
+                <button class="btn btn-vitrine" type="button" data-action="toggle-spotlight" aria-pressed="false">Spotlight</button>
+              </div>
+            </div>
+
+            <div class="control-block">
+              <h3 class="control-label">Animation</h3>
+              <div class="control-group">
+                <button class="btn btn-vitrine" type="button" data-action="play-animation">Animate</button>
+                <button class="btn btn-vitrine" type="button" data-action="toggle-explode" aria-pressed="false">Explode</button>
+                <button class="btn btn-vitrine" type="button" data-action="reset-animation">Reset</button>
+              </div>
+            </div>
+
+            <div class="control-block">
+              <h3 class="control-label">Camera</h3>
+              <div class="control-group">
+                <button class="btn btn-vitrine" type="button" data-action="camera-perspective">Perspective</button>
+                <button class="btn btn-vitrine" type="button" data-action="camera-orthographic">Orthographic</button>
+                <button class="btn btn-vitrine" type="button" data-action="camera-reset">Reset view</button>
+              </div>
+            </div>
+
+            <div class="control-block">
+              <h3 class="control-label">Post-processing</h3>
+              <div class="control-group">
+                <button class="btn btn-vitrine" type="button" data-action="toggle-postfx" aria-pressed="false">Effects</button>
+              </div>
+            </div>
+
+            <div class="control-block">
+              <h3 class="control-label">Textures</h3>
+              <div class="control-group" id="texture-controls">
+                <p class="control-hint">Texture options depend on the selected model.</p>
+              </div>
+            </div>
+          </div>
+        </aside>
+      </div>
+
+      <div class="row g-3">
+        <section class="col-12" aria-label="Model description">
+          <div class="panel">
+            <h2 class="panel-title">Description</h2>
+            <p id="model-description" aria-live="polite">Select a model from the gallery to see its description.</p>
+          </div>
+        </section>
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container-fluid">
+      <nav aria-label="Footer navigation">
+        <ul class="footer-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="app.html">App</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="references.html">References</a></li>
+          <li><a href="originality.html">Originality</a></li>
+          <li><a href="sitemap.html">Site map</a></li>
+          <li><a href="submission.html">Submission</a></li>
+        </ul>
+      </nav>
+      <p class="footer-note">Vitrine, built for the Web 3D Apps coursework.</p>
+    </div>
+  </footer>
+
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "./js/lib/three/build/three.module.js",
+      "three/addons/": "./js/lib/three/addons/"
+    }
+  }
+  </script>
+  <script type="module" src="js/main.js"></script>
+  <script src="js/lib/bootstrap/bootstrap.bundle.min.js"></script>
+</body>
+</html>

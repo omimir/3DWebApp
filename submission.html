@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en" data-bs-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Submission &middot; Vitrine</title>
+  <meta name="description" content="The five items required for the Vitrine coursework submission, including the deeper understanding statement.">
+  <link rel="stylesheet" href="js/lib/bootstrap/bootstrap.min.css">
+  <link rel="stylesheet" href="css/theme.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/components.css">
+</head>
+<body>
+  <header>
+    <nav class="navbar navbar-expand-lg site-nav" aria-label="Main navigation">
+      <div class="container-fluid">
+        <a class="navbar-brand brand" href="index.html">
+          <span class="brand-logo" aria-hidden="true">V</span>
+          <span class="brand-name">Vitrine</span>
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#site-menu" aria-controls="site-menu"
+                aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="site-menu">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+            <li class="nav-item"><a class="nav-link" href="app.html">App</a></li>
+            <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+            <li class="nav-item"><a class="nav-link" href="references.html">References</a></li>
+            <li class="nav-item"><a class="nav-link" href="originality.html">Originality</a></li>
+            <li class="nav-item"><a class="nav-link" href="sitemap.html">Site map</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main class="page page-doc">
+    <div class="container-fluid">
+      <h1>Submission</h1>
+      <p class="lead">The five things the coursework submission needs. The three
+        URLs go in once the project is published.</p>
+      <ol class="submission-list">
+        <li>
+          <h2>Packaged project, launched from VS Code</h2>
+          <p>Vitrine is a static site with no build step. The repository
+            includes <code>.vscode/extensions.json</code>, which recommends the
+            Live Preview extension. Open <code>index.html</code> in VS Code,
+            choose "Show Preview", and the app runs. It can also be served with
+            <code>npx serve .</code> from the project root.</p>
+        </li>
+        <li>
+          <h2>ITS Web Server URL</h2>
+          <p>[ITS Web Server URL to be added once the site is published.] The
+            site is static, uses only relative paths and keeps its own copies
+            of the libraries, so the project folder uploads to the ITS web
+            space without any changes.</p>
+        </li>
+        <li>
+          <h2>GitHub codebase URL</h2>
+          <p>[GitHub codebase URL to be added.] This repository holds the
+            application code, the styles, the copies of Three.js and Bootstrap,
+            the glTF models and the Blender source files.</p>
+        </li>
+        <li>
+          <h2>GitHub X3D models URL</h2>
+          <p>[GitHub X3D models URL to be added.] A separate repository holds
+            the can, bottle and globe in X3D format.</p>
+        </li>
+        <li>
+          <h2>Deeper understanding statement</h2>
+
+          <h3>Custom GLSL shaders</h3>
+          <p>The globe has a thin shell mesh around it running a custom
+            <code>ShaderMaterial</code>. Its fragment shader works out a fresnel
+            term from the view direction and the surface normal: small where the
+            surface faces the camera, large where it turns away. That value is
+            used as the alpha of an additively blended colour, so it reads as a
+            faint atmosphere at the globe's edge without touching the globe's
+            own surface texture.</p>
+          <p>There is a second piece of custom GLSL in the post-processing: a
+            vignette pass that darkens the frame edges after tone mapping, the
+            way a studio photo falls off towards the corners.</p>
+
+          <h3>Post-processing</h3>
+          <p>The viewer has an optional pipeline built with the Three.js
+            <code>EffectComposer</code>: a render pass, a bloom pass on the
+            bright highlights, tone mapping, the custom vignette, and an FXAA
+            anti-aliasing pass. It is switched on and off from the controls, and
+            the bloom is eased back when the visitor asks for reduced motion.</p>
+
+          <h3>Work beyond the lab material</h3>
+          <p>The 3D layer uses Three.js for glTF loading, orbit controls,
+            image-based lighting, shadow mapping, raycasting, two camera types
+            and the post-processing chain. The app is structured as model, view
+            and controller in vanilla JavaScript modules, joined by a small
+            publish-and-subscribe event bus, and it renders on demand so the
+            page is idle when nothing moves.</p>
+          <p>Each model has an animation of its own rather than a generic spin.
+            The can's tab hinges open on a pivot at the rivet, the bottle's cap
+            unscrews and lifts off, and the globe's sphere spins on its stand
+            and coasts to a stop. The bottle body is also swapped to a
+            transmissive clear-plastic material as the model loads. The models
+            are exported from Blender to glTF, and a dependency-free Node script
+            converts the glTF to X3D, since Blender 5.1 no longer ships an X3D
+            exporter.</p>
+
+          <h3>Testing</h3>
+          <p>I checked the app as I built it: every control was tried as it was
+            added, the browser console was watched for errors, and the network
+            requests were confirmed. On a final pass I went through the gallery,
+            every control, all three model animations, the exploded view, the
+            texture swap and the post-processing together, with no console
+            errors. [User testing notes to be added before submission: ask a
+            few people to use the app, and record what they found awkward and
+            what was changed because of it.]</p>
+        </li>
+      </ol>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container-fluid">
+      <nav aria-label="Footer navigation">
+        <ul class="footer-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="app.html">App</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="references.html">References</a></li>
+          <li><a href="originality.html">Originality</a></li>
+          <li><a href="sitemap.html">Site map</a></li>
+          <li><a href="submission.html">Submission</a></li>
+        </ul>
+      </nav>
+      <p class="footer-note">Vitrine, built for the Web 3D Apps coursework.</p>
+    </div>
+  </footer>
+
+  <script src="js/lib/bootstrap/bootstrap.bundle.min.js"></script>
+</body>
+</html>

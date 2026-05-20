@@ -1,0 +1,32 @@
+{
+  "models": [
+    {
+      "id": "bottle",
+      "name": "Bottle",
+      "file": "assets/models/glb/bottle.glb",
+      "description": "A water bottle modelled in Blender. The body and the cap are separate meshes, so the clear plastic and the coloured cap pick up the studio lighting in different ways. Animate unscrews the cap.",
+      "clearMaterials": ["BLASTIC"],
+      "animation": { "kind": "unscrew", "part": "Circle" }
+    },
+    {
+      "id": "can",
+      "name": "Can",
+      "file": "assets/models/glb/can.glb",
+      "description": "A fizzy-drink can modelled in Blender, with a separate pull-tab on top. The metal picks up reflections from the surrounding environment. Animate pops the tab open.",
+      "animation": { "kind": "poptab", "part": "tab" }
+    },
+    {
+      "id": "globe",
+      "name": "Globe",
+      "file": "assets/models/glb/globe.glb",
+      "description": "A desk globe modelled in Blender and mounted on a stand. Its surface texture can be swapped from the controls, and Animate spins the sphere on its stand.",
+      "animation": { "kind": "spin", "part": "Sphere" },
+      "textures": [
+        { "id": "plain", "label": "Plain" },
+        { "id": "earth", "label": "Earth", "map": "assets/textures/earth.jpg" },
+        { "id": "moon", "label": "Moon", "map": "assets/textures/moon.jpg" }
+      ],
+      "effects": ["atmosphere"]
+    }
+  ]
+}

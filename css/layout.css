@@ -1,0 +1,122 @@
+/* page chrome, the document layout, the app grid and the canvas */
+
+.site-nav {
+  background-color: var(--vt-surface);
+  border-bottom: 1px solid var(--vt-border);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.brand-name {
+  font-weight: 700;
+  font-size: 1.15rem;
+  color: var(--vt-text);
+}
+
+.navbar-brand:hover .brand-name {
+  color: var(--vt-accent-strong);
+}
+
+.site-nav .nav-link {
+  color: var(--vt-text-muted);
+}
+
+.site-nav .nav-link:hover,
+.site-nav .nav-link.active {
+  color: var(--vt-text);
+}
+
+.page {
+  padding-block: 1.75rem 3rem;
+}
+
+.site-footer {
+  background-color: var(--vt-surface);
+  border-top: 1px solid var(--vt-border);
+  padding-block: 1.5rem;
+}
+
+.footer-links {
+  list-style: none;
+  margin: 0 0 0.6rem;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 1.4rem;
+}
+
+.footer-note {
+  margin: 0;
+  color: var(--vt-text-muted);
+}
+
+/* home page hero */
+.hero {
+  text-align: center;
+  padding-block: 3.5rem 3rem;
+  border-bottom: 1px solid var(--vt-border);
+}
+
+.hero-title {
+  margin: 0;
+  font-size: 2.7rem;
+}
+
+.hero-strap {
+  margin: 0.35rem 0 0;
+  color: var(--vt-accent);
+  font-size: 1.1rem;
+}
+
+.hero-lead {
+  max-width: 38rem;
+  margin: 1rem auto 1.6rem;
+  color: var(--vt-text-muted);
+}
+
+.home-section {
+  padding-top: 2rem;
+}
+
+/* document pages keep a readable column width */
+.page-doc .container-fluid {
+  max-width: 56rem;
+}
+
+.page-doc section {
+  margin-top: 1.75rem;
+}
+
+.signoff {
+  margin-top: 1.5rem;
+}
+
+.signoff dt {
+  color: var(--vt-text-muted);
+  font-weight: 600;
+}
+
+.signoff dd {
+  margin: 0 0 0.6rem;
+}
+
+/* the 3D viewer */
+.canvas-wrap {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  background-color: #0e0f13;
+  border: 1px solid var(--vt-border);
+  border-radius: var(--vt-radius);
+  overflow: hidden;
+}
+
+#scene-canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}

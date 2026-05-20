@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en" data-bs-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Home &middot; Vitrine</title>
+  <meta name="description" content="Vitrine is an interactive 3D web app showing three Blender models: a drink can, a water bottle and a globe.">
+  <link rel="stylesheet" href="js/lib/bootstrap/bootstrap.min.css">
+  <link rel="stylesheet" href="css/theme.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/components.css">
+</head>
+<body>
+  <header>
+    <nav class="navbar navbar-expand-lg site-nav" aria-label="Main navigation">
+      <div class="container-fluid">
+        <a class="navbar-brand brand" href="index.html">
+          <span class="brand-logo" aria-hidden="true">V</span>
+          <span class="brand-name">Vitrine</span>
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#site-menu" aria-controls="site-menu"
+                aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="site-menu">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item"><a class="nav-link active" aria-current="page" href="index.html">Home</a></li>
+            <li class="nav-item"><a class="nav-link" href="app.html">App</a></li>
+            <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+            <li class="nav-item"><a class="nav-link" href="references.html">References</a></li>
+            <li class="nav-item"><a class="nav-link" href="originality.html">Originality</a></li>
+            <li class="nav-item"><a class="nav-link" href="sitemap.html">Site map</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main class="page page-home">
+    <section class="hero">
+      <div class="container-fluid">
+        <p class="hero-logo" aria-hidden="true">V</p>
+        <h1 class="hero-title">Vitrine</h1>
+        <p class="hero-strap">Interactive 3D, in your browser.</p>
+        <p class="hero-lead">Three models built in Blender and run in the
+          browser with Three.js: a drinks can, a water bottle and a desk globe.
+          Orbit them, change the lighting, swap textures and take them apart.</p>
+        <a class="btn btn-vitrine btn-lg" href="app.html">Open the app</a>
+      </div>
+    </section>
+
+    <section class="container-fluid home-section">
+      <h2>What is inside</h2>
+      <ul class="feature-list">
+        <li>Three models loaded from glTF, with an orbit camera and both
+          perspective and orthographic views.</li>
+        <li>Controls for wireframe, lighting, post-processing and the globe's
+          surface texture.</li>
+        <li>An animation for each model: the can pops open, the bottle's cap
+          unscrews, the globe spins on its stand.</li>
+        <li>A custom GLSL atmosphere shader and an optional post-processing
+          pass.</li>
+        <li>Import your own glTF files straight into the gallery.</li>
+      </ul>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container-fluid">
+      <nav aria-label="Footer navigation">
+        <ul class="footer-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="app.html">App</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="references.html">References</a></li>
+          <li><a href="originality.html">Originality</a></li>
+          <li><a href="sitemap.html">Site map</a></li>
+          <li><a href="submission.html">Submission</a></li>
+        </ul>
+      </nav>
+      <p class="footer-note">Vitrine, built for the Web 3D Apps coursework.</p>
+    </div>
+  </footer>
+
+  <script src="js/lib/bootstrap/bootstrap.bundle.min.js"></script>
+</body>
+</html>
