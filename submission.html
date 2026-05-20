@@ -60,14 +60,9 @@
         </li>
         <li>
           <h2>GitHub codebase URL</h2>
-          <p>[GitHub codebase URL to be added.] This repository holds the
+          <p>https://github.com/omimir/3DWebApp This repository holds the
             application code, the styles, the copies of Three.js and Bootstrap,
             the glTF models and the Blender source files.</p>
-        </li>
-        <li>
-          <h2>GitHub X3D models URL</h2>
-          <p>[GitHub X3D models URL to be added.] A separate repository holds
-            the can, bottle and globe in X3D format.</p>
         </li>
         <li>
           <h2>Deeper understanding statement</h2>
@@ -91,31 +86,6 @@
             anti-aliasing pass. It is switched on and off from the controls, and
             the bloom is eased back when the visitor asks for reduced motion.</p>
 
-          <h3>Work beyond the lab material</h3>
-          <p>The 3D layer uses Three.js for glTF loading, orbit controls,
-            image-based lighting, shadow mapping, raycasting, two camera types
-            and the post-processing chain. The app is structured as model, view
-            and controller in vanilla JavaScript modules, joined by a small
-            publish-and-subscribe event bus, and it renders on demand so the
-            page is idle when nothing moves.</p>
-          <p>Each model has an animation of its own rather than a generic spin.
-            The can's tab hinges open on a pivot at the rivet, the bottle's cap
-            unscrews and lifts off, and the globe's sphere spins on its stand
-            and coasts to a stop. The bottle body is also swapped to a
-            transmissive clear-plastic material as the model loads. The models
-            are exported from Blender to glTF, and a dependency-free Node script
-            converts the glTF to X3D, since Blender 5.1 no longer ships an X3D
-            exporter.</p>
-
-          <h3>Testing</h3>
-          <p>I checked the app as I built it: every control was tried as it was
-            added, the browser console was watched for errors, and the network
-            requests were confirmed. On a final pass I went through the gallery,
-            every control, all three model animations, the exploded view, the
-            texture swap and the post-processing together, with no console
-            errors. [User testing notes to be added before submission: ask a
-            few people to use the app, and record what they found awkward and
-            what was changed because of it.]</p>
         </li>
       </ol>
     </div>
